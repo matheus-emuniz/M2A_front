@@ -1,14 +1,26 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import vuetify from './plugins/vuetify'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import vuetify from './plugins/vuetify';
+import VueMask from 'v-mask';
+import axios from 'axios';
+import Toast from './plugins/toast';
 
-Vue.config.productionTip = false
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8000'
+});
+
+Vue.prototype.$axios = axiosInstance;
+
+Vue.config.productionTip = false;
+
+Vue.use(VueMask);
+Vue.use(Toast)
 
 new Vue({
   router,
   store,
   vuetify,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

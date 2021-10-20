@@ -134,16 +134,12 @@
 						</v-btn>
 
 						<div v-for="(faturamento, index) in empresa.faturamentos" :key="faturamento.index">
-							<v-row align="center">
+							<v-row align="start">
 								<v-col cols="4">
-									<v-text-field filled label="Ano" v-model="faturamento.dt_ano" v-mask="'##/##/####'"
-																autocomplete="off" :error="errors.faturamentos[index].dt_ano"
-																:error-messages="errors.faturamentos[index].dt_ano"/>
+									<v-text-field filled label="Ano" v-model="faturamento.dt_ano" v-mask="'##/##/####'" autocomplete="off"/>
 								</v-col>
 								<v-col cols="4">
-									<v-text-field filled label="Valor" v-model="faturamento.valor" type="number" autocomplete="off"
-																:error="errors.faturamentos[index].valor"
-																:error-messages="errors.faturamentos[index].valor"/>
+									<v-text-field filled label="Valor" v-model="faturamento.valor" type="number" autocomplete="off"/>
 								</v-col>
 								<v-col>
 									<v-btn icon @click="removerFaturamento(faturamento.index)">

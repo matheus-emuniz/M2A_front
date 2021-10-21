@@ -13,6 +13,7 @@ export default new Vuex.Store({
       show: false,
       text: '',
     },
+    empresas: [],
   },
   mutations: {
     showToast(store, payload) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
           store.infoToast.text = payload.text;
           break;
       }
+    },
+    setEmpresas(state, payload) {
+      state.empresas = payload;
     }
   },
   actions: {},

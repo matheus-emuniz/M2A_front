@@ -1,5 +1,5 @@
 <template>
-	<v-form ref="formCadastroEmpresa">
+	<v-form ref="form">
 		<h3 class="mb-2">Dados da Empresa</h3>
 
 		<v-stepper color="secondary" non-linear v-model="step">
@@ -24,7 +24,7 @@
 			<v-stepper-content :step="1" class="mt-10">
 				<v-row class="px-4">
 					<v-col cols="6">
-						<v-text-field filled label="CNPJ" v-model="empresa.cnpj" v-mask="'##.###.###/####-54'" autocomplete="off"
+						<v-text-field filled label="CNPJ" v-model="empresa.cnpj" v-mask="'##.###.###/####-##'" autocomplete="off"
 													:error="errors.cnpj" :error-messages="errors.cnpj"/>
 						<v-text-field filled label="Razão Social" v-model="empresa.razao_social" autocomplete="off"
 													:error="errors.razao_social" :error-messages="errors.razao_social"/>
@@ -261,6 +261,8 @@ export default {
 			this.loading = true;
 			try {
 				await this.$axios.post('/empresas/', this.empresa);
+				this.$emit('sucesso-cadastro');
+				this.$refs.form.reset();
 			} catch (e) {
 				this.errors = e.response.data;
 				this.loading = false;

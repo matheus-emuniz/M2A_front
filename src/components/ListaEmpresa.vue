@@ -8,6 +8,11 @@
 <script>
 export default {
 	name: "ListaEmpresa",
+	computed: {
+		empresas() {
+			return this.$store.state.empresas;
+		}
+	},
 	data() {
 		return {
 			headers: [
@@ -24,14 +29,8 @@ export default {
 					value: 'fk_uf',
 				}
 			],
-
-			empresas: [],
 		}
 	},
-	async mounted() {
-		const { data } = await this.$axios.get('/empresas/');
-		this.empresas = data;
-	}
 };
 </script>
 

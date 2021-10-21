@@ -18,7 +18,7 @@
 
 			<!--Cadastro-->
 			<v-tab-item>
-				<cadastro-empresa></cadastro-empresa>
+				<cadastro-empresa @sucesso-cadastro="sucessoCadastro"></cadastro-empresa>
 			</v-tab-item>
 
 			<!--Edição-->
@@ -43,6 +43,19 @@ export default {
 		return {
 			tab: 0,
 		};
+	},
+	async mounted() {
+		this.getEmpresas();
+	},
+	methods: {
+		async getEmpresas() {
+			const { data } = await this.$axios.get('/empresas/');
+			this.$store.commit('setEmpresas', data);
+		},
+		async sucessoCadastro() {
+			this.tab = 0;
+			await this.getEmpresas();
+		}
 	}
 };
 </script>

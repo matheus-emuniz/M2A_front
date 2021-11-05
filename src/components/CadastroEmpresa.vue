@@ -105,7 +105,7 @@
 													autocomplete="off" :error="errors.num_empregados" :error-messages="errors.num_empregados"/>
 						<v-text-field filled label="Gestor do projeto" v-model="empresa.nome_gestor" autocomplete="off"
 													:error="errors.nome_gestor" :error-messages="errors.nome_gestor"/>
-						<v-text-field filled label="E-mail" v-model="empresa.email" type="email" autocomplete="off"
+						<v-text-field filled label="E-mail do gestor" v-model="empresa.email" type="email" autocomplete="off"
 													:error="errors.email" :error-messages="errors.email"/>
 						<v-text-field filled label="Telefone" v-model="empresa.telefone_gestor" autocomplete="off"
 													v-mask="'(##) ####-####'" :error="errors.telefone_gestor"
@@ -173,6 +173,8 @@
 </template>
 
 <script>
+import services from '@/services';
+
 export default {
 	name: "CadastroEmpresa",
 	data() {
@@ -235,7 +237,7 @@ export default {
 	},
 
 	async mounted() {
-		const {data} = await this.$axios.get('empresafks');
+		const {data} = await services.getEmpresaFKS();
 
 		this.ufs = this.getFormatted(data.ufs, 'sg_uf');
 		this.setores = this.getFormatted(data.setores, 'ds_setor');

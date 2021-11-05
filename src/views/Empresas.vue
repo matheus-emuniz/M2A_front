@@ -32,6 +32,7 @@
 <script>
 import CadastroEmpresa from '@/components/CadastroEmpresa';
 import ListaEmpresa from '@/components/ListaEmpresa';
+import services from '@/services';
 
 export default {
 	name: "Empresas",
@@ -45,11 +46,11 @@ export default {
 		};
 	},
 	async mounted() {
-		this.getEmpresas();
+		await this.getEmpresas();
 	},
 	methods: {
 		async getEmpresas() {
-			const { data } = await this.$axios.get('/empresas/');
+			const { data } = await services.getEmpresas();
 			this.$store.commit('setEmpresas', data);
 		},
 		async sucessoCadastro() {

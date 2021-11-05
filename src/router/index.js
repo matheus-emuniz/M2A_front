@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Sistema from '../views/Sistema.vue';
 import Empresas from '../views/Empresas';
+import Grupos from '../views/Grupos';
 
 import Login from '../views/Login.vue';
 
@@ -22,6 +23,10 @@ const routes = [
       {
         path: '/empresas',
         component: Empresas,
+      },
+      {
+        path: '/grupos',
+        component: Grupos,
       },
     ]
   }

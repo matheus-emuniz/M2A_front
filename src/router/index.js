@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Sistema from '../views/Sistema.vue';
 import Empresas from '../views/Empresas';
 import Grupos from '../views/Grupos';
+import Usuarios from '../views/Usuarios';
 
 import Login from '../views/Login.vue';
 
@@ -27,6 +28,10 @@ const routes = [
       {
         path: '/grupos',
         component: Grupos,
+      },
+      {
+        path: '/usuarios',
+        component: Usuarios,
       },
     ]
   }

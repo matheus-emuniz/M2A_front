@@ -3,8 +3,8 @@
 		<v-card class="mb-2">
 
 			<v-card-text>
-				<v-row class="pa-2" justify="end" @click="resetFilters">
-					<v-btn>Limpar filtros</v-btn>
+				<v-row class="pa-2" justify="end">
+					<v-btn @click="resetFilters">Limpar filtros</v-btn>
 				</v-row>
 
 				<v-row>

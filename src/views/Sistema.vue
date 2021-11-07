@@ -12,7 +12,7 @@
 			</v-toolbar>
 		</v-card>
 
-		<v-card color="#c4c4c4" class="px-8 py-5">
+		<v-card color="#c4c4c4" class="px-8 py-5" style="color: #004976;">
 			<router-view/>
 		</v-card>
 

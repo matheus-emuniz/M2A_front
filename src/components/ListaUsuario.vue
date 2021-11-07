@@ -154,6 +154,7 @@
         methods: {
             resetFilters() {
                 this.filters = {
+                    nome: '',
                     fk_uf: null,
                     fk_email: null,
                     fk_perfil: null,

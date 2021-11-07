@@ -22,10 +22,10 @@
                     </v-row>
                     <v-row>
                         <v-col class="d-flex" cols="12" sm="6">
-                            <v-text-field filled label="Telefone" />
+                            <v-text-field filled label="Telefone" v-mask="'(##) ####-####'"/>
                         </v-col>
                         <v-col class="d-flex" cols="12" sm="6">
-                            <v-text-field filled label="Celular" />
+                            <v-text-field filled label="Celular" type="number" v-mask="'(##) #####-####'"/>
                         </v-col>
                     </v-row>
                     <v-row>

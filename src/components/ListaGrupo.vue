@@ -21,7 +21,7 @@
         </div>
 
         <div class="d-flex justify-end pa-5">
-          <v-btn class="blue" style="color: white;">
+          <v-btn class="primary">
             Buscar
           </v-btn>
           <v-btn color="primary" style="margin-left: 10px">

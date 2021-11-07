@@ -5,6 +5,7 @@ import Sistema from '../views/Sistema.vue';
 import Empresas from '../views/Empresas';
 import Grupos from '../views/Grupos';
 import Usuarios from '../views/Usuarios';
+import Diagnosticos from '../views/Diagnosticos';
 
 import Login from '../views/Login.vue';
 
@@ -32,6 +33,10 @@ const routes = [
       {
         path: '/usuarios',
         component: Usuarios,
+      },
+      {
+        path: '/diagnosticos',
+        component: Diagnosticos,
       },
     ]
   }

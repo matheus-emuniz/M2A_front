@@ -2,7 +2,7 @@
 	<section>
 		<v-card class="mb-2">
 
-			<v-card-text>
+			<v-card-text class="pa-5">
 				<v-row>
 					<v-col>
 						<v-text-field filled append-icon="mdi-magnify" label="Pesquisar" v-model="filters.search" />

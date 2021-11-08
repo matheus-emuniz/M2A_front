@@ -1,7 +1,5 @@
 <template>
 	<v-form ref="form">
-		<h3 class="mb-2">Dados da Empresa</h3>
-
 		<v-stepper color="secondary" non-linear v-model="step">
 			<v-stepper-header>
 				<v-stepper-step :step="1" editable>
@@ -280,5 +278,9 @@ export default {
 </script>
 
 <style scoped>
+
+.v-stepper__header {
+    justify-content: space-evenly;
+}
 
 </style>

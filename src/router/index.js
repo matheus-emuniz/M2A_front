@@ -6,6 +6,7 @@ import Empresas from '../views/Empresas';
 import Grupos from '../views/Grupos';
 import Usuarios from '../views/Usuarios';
 import Diagnosticos from '../views/Diagnosticos';
+import Respostas from '../views/Respostas';
 
 import Login from '../views/Login.vue';
 
@@ -37,6 +38,10 @@ const routes = [
       {
         path: '/diagnosticos',
         component: Diagnosticos,
+      },
+      {
+        path: '/respostas',
+        component: Respostas,
       },
     ]
   }

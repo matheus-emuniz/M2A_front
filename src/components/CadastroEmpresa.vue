@@ -6,15 +6,15 @@
 					Dados da Empresa
 				</v-stepper-step>
 
-				<v-stepper-step :step="2" editable>
+				<!-- <v-stepper-step :step="2" editable>
 					Informações do Responsável
-				</v-stepper-step>
+				</v-stepper-step> -->
 
-				<v-stepper-step :step="3" editable>
+				<v-stepper-step :step="2" editable>
 					Informações Adicionais
 				</v-stepper-step>
 
-				<v-stepper-step :step="4" editable>
+				<v-stepper-step :step="3" editable>
 					Informações Complementares
 				</v-stepper-step>
 			</v-stepper-header>
@@ -58,7 +58,7 @@
 				</v-row>
 			</v-stepper-content>
 
-			<v-stepper-content :step="2">
+			<!-- <v-stepper-content :step="2">
 				<v-row class="px-4">
 
 					<v-col cols="12">
@@ -80,9 +80,9 @@
 					</v-col>
 
 				</v-row>
-			</v-stepper-content>
+			</v-stepper-content> -->
 
-			<v-stepper-content :step="3">
+			<v-stepper-content :step="2">
 				<v-row class="px-4">
 					<v-col cols="6">
 						<v-select filled label="Setor" :items="setores" v-model="empresa.fk_setor" autocomplete="off"
@@ -114,7 +114,7 @@
 				</v-row>
 			</v-stepper-content>
 
-			<v-stepper-content :step="4">
+			<v-stepper-content :step="3">
 				<v-row class="px-4">
 					<v-col cols="12">
 						<v-textarea filled label="Descreva o seu negócio" v-model="empresa.ds_negocio" :error="errors.ds_negocio"
@@ -155,9 +155,9 @@
 				<v-btn class="mr-4" disabled @click="step = step > 1 ? step - 1 : step" :disabled="step === 1">
 					Voltar
 				</v-btn>
-				<v-btn color="primary" @click="step === 4 ? cadastrarEmpresa() : (step = step < 4 ? step + 1 : step)"
+				<v-btn color="primary" @click="step === 4 ? cadastrarEmpresa() : (step = step < 3 ? step + 1 : step)"
 							 :loading="loading">
-					{{ step < 4 ? 'Próximo' : 'Cadastrar' }}
+					{{ step < 3 ? 'Próximo' : 'Cadastrar' }}
 				</v-btn>
 			</div>
 		</v-stepper>

@@ -8,6 +8,7 @@ import Usuarios from '../views/Usuarios';
 import Diagnosticos from '../views/Diagnosticos';
 import Respostas from '../views/Respostas';
 import Dados from '../views/Dados';
+import Questionario from '../views/Questionario';
 
 import Login from '../views/Login.vue';
 
@@ -47,6 +48,10 @@ const routes = [
       {
         path: '/dados',
         component: Dados,
+      },
+      {
+        path: '/questionario',
+        component: Questionario,
       },
     ]
   }

@@ -3,7 +3,7 @@
 		<img class="my-6" src="@/assets/m2a-logo.png" width="200" alt="logo m2a">
 
 		<v-card color="#c4c4c4" class="mb-12">
-			<v-toolbar color="primary" dark>
+			<v-toolbar color="primary" dark >
 				<v-tabs fixed-tabs>
 					<v-tab v-for="item in menuItems" :key="item.label" :to="item.to">
 						{{ item.label }}
@@ -26,25 +26,29 @@ export default {
 		return {
 			menuItems: [
 				{
-					label: 'Diagnósticos',
-					to: '/diagnosticos'
-				},
-				{
 					label: 'Empresas',
 					to: '/empresas',
 				},
 				{
-					label: 'Grupos',
-					to: '/grupos',
+					label: 'Questionário',
+					to: '/questionario'
 				},
 				{
-					label: 'Usuários',
-					to: '/usuarios',
+					label: 'Diagnósticos',
+					to: '/diagnosticos'
 				},
-				{
-					label: 'Respostas automáticas',
-					to: '/respostas',
-				},
+				// {
+				// 	label: 'Grupos',
+				// 	to: '/grupos',
+				// },
+				// {
+				// 	label: 'Usuários',
+				// 	to: '/usuarios',
+				// },
+				// {
+				// 	label: 'Respostas automáticas',
+				// 	to: '/respostas',
+				// },
 				{
 					label: 'Dados',
 					to: '/dados',

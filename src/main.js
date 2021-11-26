@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify';
 import VueMask from 'v-mask';
 import axios from 'axios';
 import Toast from './plugins/toast';
+import UUID from 'vue-uuid';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000'
@@ -16,7 +17,8 @@ Vue.prototype.$axios = axiosInstance;
 Vue.config.productionTip = false;
 
 Vue.use(VueMask);
-Vue.use(Toast)
+Vue.use(Toast);
+Vue.use(UUID);
 
 new Vue({
   router,

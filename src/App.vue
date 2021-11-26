@@ -19,6 +19,38 @@
 
 <script>
 
+const questionario = {
+	empresa: 1,
+	perguntas: [
+		{
+			texto_pergunta: 'Pergunta 1',
+			respostas: [
+				{texto_resposta: 'a', fundamento: 'Fundamento'},
+				{texto_resposta: 'b', fundamento: 'Fundamento'},
+				{texto_resposta: 'c', fundamento: 'Fundamento'},
+				{texto_resposta: 'd', fundamento: 'Fundamento'},
+			]
+		}, {
+			texto_pergunta: 'Pergunta 1',
+			respostas: [
+				{texto_resposta: 'a', fundamento: 'Fundamento'},
+				{texto_resposta: 'b', fundamento: 'Fundamento'},
+				{texto_resposta: 'c', fundamento: 'Fundamento'},
+				{texto_resposta: 'd', fundamento: 'Fundamento'},
+			]
+		}, {
+			texto_pergunta: 'Pergunta 1',
+			respostas: [
+				{texto_resposta: 'a', fundamento: 'Fundamento'},
+				{texto_resposta: 'b', fundamento: 'Fundamento'},
+				{texto_resposta: 'c', fundamento: 'Fundamento'},
+				{texto_resposta: 'd', fundamento: 'Fundamento'},
+			]
+		},
+	]
+};
+
+
 export default {
 	name: 'App',
 

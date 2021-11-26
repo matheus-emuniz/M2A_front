@@ -14,6 +14,7 @@ export default new Vuex.Store({
       text: '',
     },
     empresas: [],
+    user: null,
   },
   mutations: {
     showToast(store, payload) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setEmpresas(state, payload) {
       state.empresas = payload;
+    },
+    setUser(state, payload) {
+      state.user = payload;
     }
   },
   actions: {},

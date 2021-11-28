@@ -76,6 +76,9 @@ const routes = [
       {
         path: '/questionario',
         component: Questionario,
+        meta: {
+          auth: 'required',
+        },
       },
     ]
   }

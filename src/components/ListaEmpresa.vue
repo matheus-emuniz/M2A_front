@@ -166,6 +166,7 @@
 				this.setores = this.getFormatted(data.setores, 'ds_setor');
 				this.valores_arrecadacoes = this.getFormatted(data.valores_arrecadacoes, 'ds_valor_arrecadacao');
 				this.empresas_vinculadas = this.getFormatted(data.empresas_vinculadas, 'fantasia');
+				console.log(this.empresas_vinculadas);
 			},
 
 			getFormatted(arr, value) {

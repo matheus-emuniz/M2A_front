@@ -2,11 +2,11 @@
 	<v-container>
 		<div class="d-flex justify-space-between align-center">
 			<img class="my-6" src="@/assets/m2a-logo.png" width="200" alt="logo m2a">
-			<v-menu transition="slide-y-transition" bottom offset-y v-if="$store.state.user">
+			<v-menu transition="slide-y-transition" bottom offset-y v-if="usuario">
 				<template v-slot:activator="{on, attrs}">
 					<v-btn text v-bind="attrs"
 								 v-on="on">
-						{{nomeUsuario}}
+						{{usuario.nome}}
 						<v-icon right>
 							mdi-chevron-down
 						</v-icon>
@@ -65,18 +65,6 @@ export default {
 					label: 'Diagnósticos',
 					to: '/diagnosticos'
 				},
-				// {
-				// 	label: 'Grupos',
-				// 	to: '/grupos',
-				// },
-				// {
-				// 	label: 'Usuários',
-				// 	to: '/usuarios',
-				// },
-				// {
-				// 	label: 'Respostas automáticas',
-				// 	to: '/respostas',
-				// },
 				{
 					label: 'Dados',
 					to: '/dados',
@@ -86,21 +74,12 @@ export default {
 	},
 
 	computed: {
-		nomeUsuario() {
-			return this.$store.state.user.nome;
+		usuario() {
+			return this.$store.state.user
 		}
 	},
 
-	mounted() {
-		this.getUser();
-	},
-
 	methods: {
-		async getUser() {
-			const {data} = await Services.getUser();
-			this.$store.commit('setUser', data);
-		},
-
 		logout() {
 			localStorage.removeItem('token');
 			this.$store.commit('setUser', null);

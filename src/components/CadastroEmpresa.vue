@@ -29,7 +29,8 @@
 						<v-checkbox filled label="É cliente master?" v-model="empresa.bool_master" autocomplete="off"
 												:error="errors.bool_master" :error-messages="errors.bool_master"/>
 						<v-select filled label="Empresa Vinculada" :disabled="empresa.bool_master" v-model="empresa.fk_master"
-											autocomplete="off" :error="errors.fk_master" :error-messages="errors.fk_master"/>
+											autocomplete="off" :error="errors.fk_master" :error-messages="errors.fk_master"
+											:items="empresas_vinculadas"/>
 						<v-text-field filled label="Telefone" v-model="empresa.telefone" autocomplete="off"
 													v-mask="'(##) ####-####'" :error="errors.telefone" :error-messages="errors.telefone"/>
 						<v-text-field filled label="Logradouro" v-model="empresa.logradouro" autocomplete="off"
@@ -97,14 +98,14 @@
 					</v-col>
 
 					<v-col cols="6">
-						<v-text-field filled label="Nome do projeto" v-model="empresa.projeto" autocomplete="off"
-													:error="errors.projeto" :error-messages="errors.projeto"/>
+						<v-select filled label="Projeto" v-model="empresa.projeto" :items="projetos" autocomplete="off"
+											:error="errors.projeto" :error-messages="errors.projeto"/>
 						<v-text-field filled label="Número de empregados" v-model="empresa.num_empregados" type="number"
 													autocomplete="off" :error="errors.num_empregados" :error-messages="errors.num_empregados"/>
-						<v-text-field filled label="Gestor do projeto" v-model="empresa.nome_gestor" autocomplete="off"
-													:error="errors.nome_gestor" :error-messages="errors.nome_gestor"/>
-						<v-text-field filled label="E-mail do gestor" v-model="empresa.email" type="email" autocomplete="off"
-													:error="errors.email" :error-messages="errors.email"/>
+						<!--						<v-text-field filled label="Gestor do projeto" v-model="empresa.nome_gestor" autocomplete="off"-->
+						<!--													:error="errors.nome_gestor" :error-messages="errors.nome_gestor"/>-->
+						<!--						<v-text-field filled label="E-mail do gestor" v-model="empresa.email" type="email" autocomplete="off"-->
+						<!--													:error="errors.email" :error-messages="errors.email"/>-->
 						<v-text-field filled label="Telefone" v-model="empresa.telefone_gestor" autocomplete="off"
 													v-mask="'(##) ####-####'" :error="errors.telefone_gestor"
 													:error-messages="errors.telefone_gestor"/>
@@ -134,7 +135,8 @@
 						<div v-for="(faturamento, index) in empresa.faturamentos" :key="faturamento.index">
 							<v-row align="start">
 								<v-col cols="4">
-									<v-text-field filled label="Ano" v-model="faturamento.dt_ano" v-mask="'##/##/####'" autocomplete="off"/>
+									<v-text-field filled label="Ano" v-model="faturamento.dt_ano" v-mask="'##/##/####'"
+																autocomplete="off"/>
 								</v-col>
 								<v-col cols="4">
 									<v-text-field filled label="Valor" v-model="faturamento.valor" type="number" autocomplete="off"/>
@@ -155,7 +157,7 @@
 				<v-btn class="mr-4" disabled @click="step = step > 1 ? step - 1 : step" :disabled="step === 1">
 					Voltar
 				</v-btn>
-				<v-btn color="primary" @click="step === 4 ? cadastrarEmpresa() : (step = step < 3 ? step + 1 : step)"
+				<v-btn color="primary" @click="step === 3 ? cadastrarEmpresa() : (step = step < 3 ? step + 1 : step)"
 							 :loading="loading">
 					{{ step < 3 ? 'Próximo' : 'Cadastrar' }}
 				</v-btn>
@@ -171,7 +173,7 @@
 </template>
 
 <script>
-import services from '@/services';
+import Services from '@/services';
 
 export default {
 	name: "CadastroEmpresa",
@@ -229,19 +231,23 @@ export default {
 			segmentos: [],
 			valores_arrecadacoes: [],
 			tipos_industria: [],
+			projetos: [],
+			empresas_vinculadas: [],
 			loading: false,
 			errors: {}
 		};
 	},
 
 	async mounted() {
-		const {data} = await services.getEmpresaFKS();
+		const {data} = await Services.getEmpresaFKS();
 
 		this.ufs = this.getFormatted(data.ufs, 'sg_uf');
 		this.setores = this.getFormatted(data.setores, 'ds_setor');
 		this.segmentos = this.getFormatted(data.segmentos, 'ds_segmento');
 		this.valores_arrecadacoes = this.getFormatted(data.valores_arrecadacoes, 'ds_valor_arrecadacao');
 		this.tipos_industria = this.getFormatted(data.tipos_industria, 'ds_tipo_industria');
+		this.projetos = this.getFormatted(data.projetos, 'nome_projeto');
+		this.empresas_vinculadas = this.getFormatted(data.empresas_vinculadas, 'fantasia');
 	},
 
 	methods: {
@@ -260,12 +266,17 @@ export default {
 		async cadastrarEmpresa() {
 			this.loading = true;
 			try {
-				await this.$axios.post('/empresas/', this.empresa);
+				await Services.createEmpresa({
+					...this.empresa,
+					usuario: this.$store.state.user.user.id,
+				});
 				this.$emit('sucesso-cadastro');
 				this.$refs.form.reset();
+				this.$store.commit('showToast', {type: 'success', text: 'Empresa criada com sucesso!'});
 			} catch (e) {
 				this.errors = e.response.data;
 				this.loading = false;
+				this.$store.commit('showToast', {type: 'error', text: 'Erro ao criar empresa!'});
 			}
 			this.loading = false;
 		},
@@ -280,7 +291,7 @@ export default {
 <style scoped>
 
 .v-stepper__header {
-    justify-content: space-evenly;
+	justify-content: space-evenly;
 }
 
 </style>

@@ -8,48 +8,23 @@
 			<span>M2A CONSULTORIA © TODOS OS DIREITOS RESERVADOS.</span>
 		</v-footer>
 
-		<v-snackbar v-model="$store.state.errorToast.show" color="error" right :timeout="3000">
+		<v-snackbar class="d-flex justify-center" v-model="$store.state.errorToast.show" color="error" top :timeout="3000">
+			<v-icon>mdi-cancel</v-icon>
 			{{ $store.state.errorToast.text }}
 		</v-snackbar>
-		<v-snackbar v-model="$store.state.infoToast.show" color="info" right :timeout="3000">
+		<v-snackbar v-model="$store.state.infoToast.show" color="info" top :timeout="3000">
+			<v-icon>mdi-info</v-icon>
 			{{ $store.state.infoToast.text }}
+		</v-snackbar>
+		<v-snackbar v-model="$store.state.successToast.show" color="success" top :timeout="3000">
+			<v-icon>mdi-check</v-icon>
+			{{ $store.state.successToast.text }}
 		</v-snackbar>
 	</v-app>
 </template>
 
 <script>
-
-const questionario = {
-	empresa: 1,
-	perguntas: [
-		{
-			texto_pergunta: 'Pergunta 1',
-			respostas: [
-				{texto_resposta: 'a', fundamento: 'Fundamento'},
-				{texto_resposta: 'b', fundamento: 'Fundamento'},
-				{texto_resposta: 'c', fundamento: 'Fundamento'},
-				{texto_resposta: 'd', fundamento: 'Fundamento'},
-			]
-		}, {
-			texto_pergunta: 'Pergunta 1',
-			respostas: [
-				{texto_resposta: 'a', fundamento: 'Fundamento'},
-				{texto_resposta: 'b', fundamento: 'Fundamento'},
-				{texto_resposta: 'c', fundamento: 'Fundamento'},
-				{texto_resposta: 'd', fundamento: 'Fundamento'},
-			]
-		}, {
-			texto_pergunta: 'Pergunta 1',
-			respostas: [
-				{texto_resposta: 'a', fundamento: 'Fundamento'},
-				{texto_resposta: 'b', fundamento: 'Fundamento'},
-				{texto_resposta: 'c', fundamento: 'Fundamento'},
-				{texto_resposta: 'd', fundamento: 'Fundamento'},
-			]
-		},
-	]
-};
-
+import Services from '@/services';
 
 export default {
 	name: 'App',
@@ -57,5 +32,9 @@ export default {
 	data: () => ({
 		//
 	}),
+
+	mounted() {
+		this.$store.dispatch('getUser');
+	},
 };
 </script>

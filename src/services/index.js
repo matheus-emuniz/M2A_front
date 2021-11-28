@@ -34,6 +34,23 @@ class Services {
     return await api.delete(`/empresas/${id}`);
   }
 
+  static async createEmpresa(data) {
+    return await api.post(`/empresas/`, data);
+  }
+
+  // ----------- AUTH -----------
+
+  static async getDiagnosticos(filters) {
+    for (let filter in filters) {
+      if (filters.hasOwnProperty(filter)) {
+        if (!filters[filter]) {
+          delete filters[filter];
+        }
+      }
+    }
+    return await api.get('/diagnosticos', { params: filters || {} });
+  }
+
    // ----------- AUTH -----------
   static async login(loginData) {
     return await api.post('', loginData);
@@ -51,8 +68,17 @@ class Services {
     return await api.put(`/usuarios/${id}`, data);
   }
 
-  static async changePassword(id, password) {
-    return await api.put(`/usuarios/${id}`, data);
+  static async changePassword(data) {
+    return await api.put(`/usuarios/change_password/`, data);
+  }
+
+  // ----------- QUESTIONARIO -----------
+  static async getQuestionario(empresaId) {
+    return await api.get(`/empresas/${empresaId}/get_questionario/`);
+  }
+
+  static async responderQuestionario(questionarioId, data) {
+    return await api.post(`/questionarios/${questionarioId}/responder/`, data);
   }
 }
 

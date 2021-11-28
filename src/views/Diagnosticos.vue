@@ -5,8 +5,8 @@
 		<v-card class="mb-6">
 			<v-tabs v-model="tab">
 				<v-tab>Lista</v-tab>
-				<v-tab>Cadastro</v-tab>
-				<v-tab disabled>Edição</v-tab>
+<!--				<v-tab>Cadastro</v-tab >-->
+<!--				<v-tab disabled>Edição</v-tab>-->
 			</v-tabs>
 		</v-card>
 
@@ -32,7 +32,7 @@
 <script>
 import CadastroDiagnostico from '@/components/CadastroDiagnostico';
 import ListaDiagnostico from '@/components/ListaDiagnostico';
-import services from '@/services';
+import Services from '@/services';
 
 export default {
 	components: {
@@ -45,6 +45,16 @@ export default {
 		};
 	},
 
+	mounted() {
+		this.getDiagnosticos();
+	},
+
+	methods: {
+		async getDiagnosticos() {
+			const {data} = await Services.getDiagnosticos();
+			this.$store.commit('setDiagnosticos', data);
+		}
+	}
 }
 </script>
 

@@ -41,13 +41,11 @@ export default {
 					password: this.password
 				});
 				localStorage.setItem('token', token);
+				await this.$store.dispatch('getUser');
 				await this.$router.push('/empresas');
 			} catch (e) {
 				console.log(e);
 				this.errors = e.response.data;
-				// if (this.errors.non_field_errors) {
-				//
-				// }
 				this.loginLoading = false;
 			}
 			this.loginLoading = false;

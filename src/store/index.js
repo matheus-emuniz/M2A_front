@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Services from '@/services';
 
 Vue.use(Vuex);
 
@@ -13,7 +14,12 @@ export default new Vuex.Store({
       show: false,
       text: '',
     },
+    successToast: {
+      show: false,
+      text: '',
+    },
     empresas: [],
+    diagnosticos: [],
     user: null,
   },
   mutations: {
@@ -27,6 +33,10 @@ export default new Vuex.Store({
           store.infoToast.show = true;
           store.infoToast.text = payload.text;
           break;
+        case 'success':
+          store.successToast.show = true;
+          store.successToast.text = payload.text;
+          break;
       }
     },
     setEmpresas(state, payload) {
@@ -34,8 +44,16 @@ export default new Vuex.Store({
     },
     setUser(state, payload) {
       state.user = payload;
+    },
+    setDiagnosticos(state, payload) {
+      state.diagnosticos = payload;
     }
   },
-  actions: {},
+  actions: {
+    async getUser({commit}) {
+      const {data} = await Services.getUser();
+      commit('setUser', data);
+    },
+  },
   modules: {}
 });

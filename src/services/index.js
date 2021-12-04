@@ -53,7 +53,7 @@ class Services {
 
    // ----------- AUTH -----------
   static async login(loginData) {
-    return await api.post('', loginData);
+    return await api.post('/auth/', loginData);
   }
 
   static async getUser() {

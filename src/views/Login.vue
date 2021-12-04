@@ -36,7 +36,7 @@ export default {
 		async login() {
 			this.loginLoading = true;
 			try {
-				const {data: {token}} = await axios.post('http://localhost:8000/auth', {
+				const {data: {token}} = await Services.login({
 					username: this.email,
 					password: this.password
 				});

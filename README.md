@@ -1,3 +1,23 @@
+# m2a_front
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
 # Projeto M2A
 
 A M2A visa a expansão das carteiras de MPO(Microcrédito Produtivo e Orientado) para as instituições financeiras parceiras dando ênfase ainda maior aos programas governamentais, com tratamento preferencial e diferenciado às Micro e Pequenas Empresas. Além disso, muda a percepção de que as instituições parceiras são meramente incentivadores de créditos e financiamentos e os empresários apenas tomadores de crédito.

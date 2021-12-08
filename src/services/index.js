@@ -5,9 +5,12 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(function (config) {
-  config.headers = {
-    ...config.headers,
-    'Authorization': `Token ${localStorage.getItem('token')}`,
+
+  if (localStorage.getItem('token')) {
+    config.headers = {
+      ...config.headers,
+      'Authorization': `Token ${localStorage.getItem('token')}`,
+    };
   }
 
   return config;
@@ -23,7 +26,7 @@ class Services {
         }
       }
     }
-    return await api.get('/empresas', { params: filters });
+    return await api.get('/empresas', {params: filters});
   }
 
   static async getEmpresaFKS() {
@@ -48,10 +51,10 @@ class Services {
         }
       }
     }
-    return await api.get('/diagnosticos', { params: filters || {} });
+    return await api.get('/diagnosticos', {params: filters || {}});
   }
 
-   // ----------- AUTH -----------
+  // ----------- AUTH -----------
   static async login(loginData) {
     return await api.post('/auth/', loginData);
   }
